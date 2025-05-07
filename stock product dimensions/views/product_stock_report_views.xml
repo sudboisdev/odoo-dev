@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_product_tree_view_add_stock_m2_m3_final" model="ir.ui.view">
+        <field name="name">product.product.tree.view.stock.dimensions.final</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_available']" position="after">
+                <field name="stock_m2"/>
+                <field name="stock_m3"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

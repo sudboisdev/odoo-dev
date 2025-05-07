@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_product_form_view_inherit_dimensions" model="ir.ui.view">
+        <field name="name">product.product.form.view.inherit.dimensions</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='standard_price_uom']" position="inside">
+                <group string="Dimensions (mm)">
+                    <field name="length" readonly="1"/>
+                    <field name="width" readonly="1"/>
+                    <field name="thickness" readonly="1"/>
+                </group>
+                <group string="Stock calculé">
+                    <field name="stock_m2" readonly="1"/>
+                    <field name="stock_m3" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_product_tree_view_inherit_stock" model="ir.ui.view">
+        <field name="name">product.product.tree.view.inherit.stock</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_available']" position="after">
+                <field name="stock_m2"/>
+                <field name="stock_m3"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

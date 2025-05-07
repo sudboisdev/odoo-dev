@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_product_template_form_inherit_dimensions" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.dimensions</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[@name='general_information']/group[descendant::field[@name='description']]" position="before">
+                <group string="Dimensions du produit (mm)">
+                    <field name="length"/>
+                    <field name="width"/>
+                    <field name="thickness"/>
+                </group>
+                <group>
+                    <field name="area_m2" readonly="1" force_save="1"/>
+                    <field name="volume_m3" readonly="1" force_save="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+          <record id="view_product_form_inherit_price_dimensions" model="ir.ui.view">
+        <field name="name">product.template.inherit.price.per.dimension</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[.//field[@name='area_m2']]" position="after">
+                <group string="Prix calculé par dimension">
+                    <field name="price_per_m2" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="price_per_m3" readonly="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
