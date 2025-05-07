@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_order_form_inherit_dimensions_stable" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.dimensions.stable</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            
+            <!-- Champs supplémentaires dans la liste des lignes -->
+            <xpath expr="//field[@name='order_line']/list" position="inside">
+                <field name="area_total_m2" optional="show"/>
+                <field name="volume_total_m3" optional="show"/>
+            </xpath>
+
+            <!-- Totaux en dessous de la liste des lignes -->
+            <xpath expr="//field[@name='order_line']" position="after">
+                <group string="Totaux dimensions" col="2">
+                    <field name="total_area_m2" readonly="1"/>
+                    <field name="total_volume_m3" readonly="1"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
